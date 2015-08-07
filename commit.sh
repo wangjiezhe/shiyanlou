@@ -15,7 +15,7 @@ if is_number ${class_number}; then
 	# echo "${class_number}"
 	# echo "${class_name}"
 	# echo "${commit_message}"
-	git add "cs${class_number}"
+	git add "cs${class_number}/"
 	git commit -m "${commit_message}"
 else
 	echo "Invalid argument: ${class_number}!"
