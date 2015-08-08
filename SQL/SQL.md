@@ -32,7 +32,7 @@ SQL 语言简介
 	<colomn 1> <type>(<length>),
 	<colomn 2> <type>(<length>),
 	<colomn 3> <type>(<length>)
-	)
+	);
 
 ### 常见数据类型
 
@@ -107,14 +107,14 @@ SQL 语言简介
 	SELECT <colomns seperated by comma>
 	FROM <table 1>, <table 2>
 	WHERE <table 1>.<col 1> = <table 2>.<col 2>
-	<other conditions>
+	<other conditions>;
 
 显式连接
 
 	SELECT <colomns seperated by comma>
 	FROM <table 1> JOIN <table 2>
 	ON <table 1>.<col 1> = <table 2>.<col 2>
-	<other conditions>
+	<other conditions>;
 
 三表连接的例子见 [hom2.sql](cs9/hom2.sql)
 

@@ -1,0 +1,372 @@
+\documentclass[a4paper, twoside]{article}
+\usepackage{ctex}
+%\usepackage{indentfirst}
+\usepackage[top=1in,bottom=1in,left=1.25in,right=1.25in]{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\usepackage{fancyhdr}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[RO,LE]{SQL~语言简介}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\renewcommand{\quote}{%
+  > > }
+
+\renewcommand{\contentsname}{\Large{目~录}}
+
+\begin{document}
+
+%\setlength{\parindent}{2em}
+%\setlength{\baselineskip}{1.8em}
+%\setlength{\parskip}{1ex}
+\titleformat{\section}{\centering\Large\bfseries}{\thesection\,}{1em}{}
+
+\title{\Huge{SQL 语言简介}}
+\author{王介哲}
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+
+\pagestyle{fancy}
+
+\section{查看}
+\pagenumbering{arabic}
+
+\subsection{查看数据库}
+
+\begin{verbatim}
+SHOW DATABASES;
+\end{verbatim}
+
+\subsection{连接数据库}
+
+\begin{verbatim}
+USE <database>
+\end{verbatim}
+
+\subsection{查看表}
+
+\begin{verbatim}
+SHOW TABLES;
+\end{verbatim}
+
+\section{新数据库}
+
+\subsection{新建数据库}
+
+\begin{verbatim}
+CREATE DATABASE <database>;
+\end{verbatim}
+
+\subsection{新建数据表}
+
+\begin{verbatim}
+CREATE TABLE <table>
+(
+<colomn 1> <type>(<length>),
+<colomn 2> <type>(<length>),
+<colomn 3> <type>(<length>)
+);
+\end{verbatim}
+
+\subsection{常见数据类型}
+
+\begin{itemize}
+\tightlist
+\item
+  数字： \texttt{INT}, \texttt{FLOAT}, \texttt{DOUBLE},
+\item
+  枚举： \texttt{ENUM}, \texttt{SET},
+\item
+  时间： \texttt{DATE}, \texttt{TIME}, \texttt{YEAR},
+\item
+  字符串： \texttt{CHAR}, \texttt{VARCHAR}, \texttt{TEXT}
+\end{itemize}
+
+\subsection{查看所有数据}
+
+\begin{verbatim}
+SELECT * FROM <table>;
+\end{verbatim}
+
+\subsection{插入数据}
+
+\begin{verbatim}
+INSERT INTO <table> VALUES(<all values seperated by comma>);
+
+INSERT INTO <table>(<col 1>, <col 2>, <col 3>) VALUES(<value 1>, <value 2>, <value3>);
+\end{verbatim}
+
+\section{约束}
+
+\begin{longtable}[c]{@{}llllll@{}}
+\toprule
+约束类型： & 主键 & 默认值 & 唯一 & 外键 & 非空\tabularnewline
+\midrule
+\endhead
+关键字： & PRIMARY KEY & DEFAULT & UNIQUE & FOREIGN KEY & NOT
+NULL\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{quote}
+例子参见 \href{../cs9/SQL3/MySQL-03-01.sql}{MySQL-03-01.sql}
+\end{quote}
+
+\section{SELECT}
+
+\subsection{基本格式}
+
+\begin{verbatim}
+SELECT <colomns seperated by comma> FROM <table> WHERE <condition>;
+\end{verbatim}
+
+\subsection{条件}
+
+\begin{itemize}
+\tightlist
+\item
+  数学符号： \texttt{-}, \texttt{\textgreater{}}, \texttt{\textless{}},
+  \texttt{\textgreater{}=}, \texttt{\textless{}=}
+\item
+  逻辑关系： \texttt{AND}, \texttt{OR}
+\item
+  在 xxx 和 yyy 之间，并包含边界：
+  \texttt{BETWEEN\ \textless{}xxx\textgreater{}\ AND\ \textless{}yyy\textgreater{}}
+\item
+  在与不再： \texttt{IN}, \texttt{NOT\ IN}
+\item
+  通配符： \texttt{LIKE}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    单个字符： \texttt{\_}
+  \item
+    不定个字符： \texttt{\%}
+  \end{itemize}
+\item
+  排序：
+
+  \begin{itemize}
+  \tightlist
+  \item
+    升序（默认）： \texttt{ORDER\ BY\ \textless{}col\textgreater{}}
+  \item
+    降序： \texttt{ORDER\ BY\ \textless{}col\textgreater{}\ DESC}
+  \end{itemize}
+\item
+  分组： \texttt{GROUP\ BY\ \textless{}col\textgreater{}}
+\end{itemize}
+
+\subsection{内置函数}
+
+\begin{longtable}[c]{@{}llllll@{}}
+\toprule
+函数名： & COUNT & SUM & AVG & MAX & MIN\tabularnewline
+\midrule
+\endhead
+作用： & 计数 & 求和 & 平均值 & 最大值 & 最小值\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{quote}
+可以用 \texttt{AS} 给值重命名
+\end{quote}
+
+\subsection{子查询}
+
+\begin{verbatim}
+SELECT <colomns seperated by comma> FROM <table 1>
+WHERE <col 1> IN
+(SELECT <col 2> FROM <table 2> WHERE <condition>);
+\end{verbatim}
+
+\begin{quote}
+子查询可以扩展到3层、4层或更多层
+\end{quote}
+
+\subsection{连接查询}
+
+\subsubsection{隐式连接}
+
+\begin{verbatim}
+SELECT <colomns seperated by comma>
+FROM <table 1>, <table 2>
+WHERE <table 1>.<col 1> = <table 2>.<col 2>
+<other conditions>;
+\end{verbatim}
+
+\subsubsection{显式连接}
+
+\begin{verbatim}
+SELECT <colomns seperated by comma>
+FROM <table 1> JOIN <table 2>
+ON <table 1>.<col 1> = <table 2>.<col 2>
+<other conditions>;
+\end{verbatim}
+
+\begin{quote}
+三表连接的例子见 \href{../cs9/hom2.sql}{hom2.sql}
+\end{quote}
+
+\section{修改和删除}
+
+\subsection{对数据库的修改}
+
+\subsubsection{删除数据库}
+
+\begin{verbatim}
+DROP DATABASE <database>;
+\end{verbatim}
+
+\subsection{对表的修改}
+
+\subsubsection{重命名表}
+
+\begin{verbatim}
+RENAME TABLE <orig> TO <dest>;
+
+ALTER TABLE <orig> RENAME <dest>;
+
+ALTER TABLE <orig> RENAME TO <dest>;
+\end{verbatim}
+
+\subsubsection{删除表}
+
+\begin{verbatim}
+DROP TABLE <table>;
+\end{verbatim}
+
+\subsection{对表结构（i.e.列）的修改}
+
+\subsubsection{增加列}
+
+\begin{verbatim}
+ALTER TABLE <table> ADD COLUMN <col> <type> <constraint>;
+
+ALTER TABLE <table> ADD <col> <type> <constraint>;
+
+ALTER TABLE <table> ADD <col> <type> <constraint> AFTER <orig col>;
+
+ALTER TABLE <table> ADD <col> <type> <constraint> FIRST;
+\end{verbatim}
+
+\subsubsection{删除列}
+
+\begin{verbatim}
+ALTER TABLE <table> DROP COLUMN <col>;
+
+ALTER TABLE <table> DROP <col>;
+\end{verbatim}
+
+\subsubsection{重命名列}
+
+\begin{verbatim}
+ALTER TABLE <table> CHANGE <orig> <dest> <type> <constraint>;
+\end{verbatim}
+
+\begin{quote}
+``数据类型''(<type>) 不能省略
+\end{quote}
+
+\subsubsection{改变数据类型}
+
+\begin{verbatim}
+ALTER TABLE <table> MODIFY <col> <new type>;
+\end{verbatim}
+
+\begin{quote}
+修改数据类型可能导致数据丢失
+\end{quote}
+
+\subsection{对表的内容的修改}
+
+\subsubsection{修改表中的某个值}
+
+\begin{verbatim}
+UPDATE <table> SET <col 1>=<value 1>, <col 2>=<value 2> WHERE <condition>;
+\end{verbatim}
+
+\begin{quote}
+一定要有 WHERE 条件，否则会修改整个表
+\end{quote}
+
+\subsubsection{删除一行记录}
+
+\begin{verbatim}
+DELETE FROM <table> WHERE <condition>;
+\end{verbatim}
+
+\begin{quote}
+一定要有 WHERE 条件，否则会删除所有数据
+\end{quote}
+
+\section{其它}
+
+\subsection{索引}
+
+\begin{verbatim}
+ALTER TABLE <table> ADD INDEX <index> (<col>);
+
+CREATE INDEX <index> FROM <table> (<col>);
+\end{verbatim}
+
+\subsection{视图}
+
+\begin{verbatim}
+CREATE VIEW <view>(<col a>, <col b>, <col c>)
+AS SELECT <col 1>, <col 2>, <col 3> FROM <table>;
+\end{verbatim}
+
+\begin{quote}
+视图是虚拟的表
+\end{quote}
+
+\subsection{导入}
+
+\begin{verbatim}
+LOAD DATA INFILE '<file path>' INTO TABLE <table>;
+\end{verbatim}
+
+\subsection{导出}
+
+\begin{verbatim}
+SELECT <colomns seperated by comma, or star(*) to select all>
+INTO OUTFILE '<file path>' FROM <table>;
+\end{verbatim}
+
+\subsection{备份}
+
+\begin{verbatim}
+mysqldump -u root <database> > <backup.sql>  # 备份整个数据库
+
+mysqldump -u root <database> <table> > <backup.sql>  # 备份整个表
+\end{verbatim}
+
+\subsection{恢复}
+
+\begin{verbatim}
+mysql -u root
+    SOURCE <backup.sql>;
+\end{verbatim}
+
+或者
+
+\begin{verbatim}
+mysql -u root
+    CREATE DATABASE <database>;
+    exit
+mysql -u root < <backup.sql>
+\end{verbatim}
+
+\end{document}
