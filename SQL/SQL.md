@@ -60,7 +60,7 @@ SQL 语言简介
 | 关键字： | PRIMARY KEY | DEFAULT | UNIQUE | FOREIGN KEY | NOT NULL |
 
 
-例子参见 [MySQL-03-01.sql](cs9/SQL3/MySQL-03-01.sql)
+例子参见 [MySQL-03-01.sql](../cs9/SQL3/MySQL-03-01.sql)
 
 
 四、 SELECT
@@ -116,7 +116,7 @@ SQL 语言简介
 	ON <table 1>.<col 1> = <table 2>.<col 2>
 	<other conditions>;
 
-三表连接的例子见 [hom2.sql](cs9/hom2.sql)
+三表连接的例子见 [hom2.sql](../cs9/hom2.sql)
 
 
 五、 修改和删除
