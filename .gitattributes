@@ -1,3 +1,3 @@
 *.db binary
-*.gif binary
-*.jpg binary
+*.gif diff=exif
+*.jpg diff=exif
