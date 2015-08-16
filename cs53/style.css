@@ -1,0 +1,12 @@
+p strong {
+	color: cadetblue;
+}
+
+p > strong {
+	color: cadetblue;
+}
+
+li+li {
+	color: cadetblue;
+	font-size: 40px;
+}
