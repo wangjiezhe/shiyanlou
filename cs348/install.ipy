@@ -1,0 +1,6 @@
+#!/usr/bin/env ipython
+
+%install_ext version_information.py
+
+%load_ext version_information
+%version_information numpy, scipy, matplotlib, sympy
