@@ -1,5 +1,5 @@
 package com.shiyanlou;
 
 public interface EnPluginInterface {
-	void chargeWith3Pins();
+  void chargeWith3Pins();
 }

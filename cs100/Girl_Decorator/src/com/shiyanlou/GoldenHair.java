@@ -1,15 +1,15 @@
 package com.shiyanlou;
 
 public class GoldenHair extends GirlDecorator {
-	private Girl girl;
+  private Girl girl;
 
-	public GoldenHair(Girl g) {
-		girl = g;
-	}
+  public GoldenHair(Girl g) {
+    girl = g;
+  }
 
-	@Override
-	public String getDescription() {
-		return girl.getDescription() + "+with golden hair";
-	}
+  @Override
+  public String getDescription() {
+    return girl.getDescription() + "+with golden hair";
+  }
 
 }

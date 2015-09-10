@@ -1,7 +1,7 @@
 package com.shiyanlou;
 
 public class AmericanGirl extends Girl {
-	public AmericanGirl() {
-		description = "+AmericanGirl";
-	}
+  public AmericanGirl() {
+    description = "+AmericanGirl";
+  }
 }

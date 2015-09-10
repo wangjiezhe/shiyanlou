@@ -1,5 +1,5 @@
 package com.shiyanlou;
 
 public interface Observer {
-	public void update(Subject s);
+  public void update(Subject s);
 }

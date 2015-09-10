@@ -1,5 +1,5 @@
 package com.shiyanlou;
 
 public interface TableWare {
-	public String getToolName();
+  public String getToolName();
 }
