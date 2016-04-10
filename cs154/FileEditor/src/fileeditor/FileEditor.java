@@ -90,7 +90,7 @@ public class FileEditor extends JFrame {
         File[] files = directory.listFiles();
 
         if (files != null) {
-            for (File file: files) {
+            for (File file : files) {
                 if (file.isDirectory()) {
                     for (int j = 0; j < this.level; j++) {
                         editArea.append("  ");
@@ -99,7 +99,7 @@ public class FileEditor extends JFrame {
                     this.level++;
                     showDir(file);
                 } else if (file.isFile()) {
-                    for (int j = 0; j < this.level+2; j++) {
+                    for (int j = 0; j < this.level + 2; j++) {
                         editArea.append(" ");
                     }
                     editArea.append(this.level + " ┝ ┈" + file.getAbsolutePath() + "\n");
@@ -112,22 +112,3 @@ public class FileEditor extends JFrame {
         new FileEditor();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
