@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resource Practice</string>
+    <string name="title_button">ich bin ein knopf</string>
+    <string name="title_welcome">willkommen</string>
+</resources>
