@@ -1,0 +1,43 @@
+<html>
+<head>
+  <script>
+    function click_button() {     // ????????????
+      alert('welcome to shiyanlou');
+    }
+    
+    function mDown(obj)    // ???? ? ??????
+    {
+    obj.style.backgroundColor="#1ec5e5";
+    obj.innerHTML="release your mouse"
+    }
+
+    function mUp(obj)     // ???? ? ??????
+    {
+    obj.style.backgroundColor="green";
+    obj.innerHTML="press here"
+    }
+
+  </script>
+</head>
+
+<body align="center">
+  <br></br>
+  <button onclick="click_button()">click me</button>  <!--???? onclick ?????? click_button()-->
+  <br />
+  <div style="background-color:green;width:200px;height:50px;margin:20px;padding-top:10px;color:#ffffff;font-weight:bold;font-size:18px;text-align:center;"
+
+onmouseover="this.innerHTML='good'"
+
+onmouseout="this.innerHTML='you have moved out'"
+
+>move your mouse to here</div>
+    <br />
+    <div style="background-color:green;width:200px;height:35px;margin:20px;padding-top:20px;color:rgb(255,255,255);font-weight:bold;font-size:18px;text-align:center;"
+
+onmousedown="mDown(this)"
+
+onmouseup="mUp(this)"
+
+>press here</div>
+</body>
+</html>
